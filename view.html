@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Notifications</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .notification-section {
+            width: 500px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], select, textarea, input[type="submit"] {
+            width: calc(100% - 18px); /* Adjusted width to match other input fields */
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="notification-section">
+        <h2>Send Notifications</h2>
+        <form action="send_notification.php" method="post">
+            <label for="tin">Enter Your Tax Identification  Number (TIN):</label>
+            <input type="text" id="tin" name="tin" required><br><br>
+            
+            <label for="notificationType">Notification Type:</label>
+            <select name="notificationType" id="notificationType">
+                <option value="overdue">Overdue Tax Payment</option>
+                <option value="reminder">Tax Payment Reminder</option>
+                <option value="penalty">Penalty Notice</option>
+            </select><br><br>
+            
+            <label for="message">Message:</label><br>
+            <textarea name="message" id="message" rows="4" cols="50" required></textarea><br><br>
+            
+            <input type="submit" value="Send Notification">
+        </form>
+    </div>
+</body>
+</html>

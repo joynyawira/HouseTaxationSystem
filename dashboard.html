@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>House Tax Payment Dashboard</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+    /* Basic styling for the dashboard */
+    body {
+        font-family: Poppins, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5; /* Changed body background color */
+    }
+    .container {
+        max-width: 1300px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #ffffff; /* Changed container background color */
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .header {
+        text-align: center;
+        margin-bottom: 20px; /* Increased margin bottom for header */
+        padding: 20px 0; /* Added padding to header */
+        background-color: #007bff; /* Changed header background color */
+        color: #fff; /* Changed header text color */
+    }
+    .menu {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        background-color: #f9f9f9; /* Changed menu background color */
+        padding: 10px 20px; /* Added padding to menu */
+    }
+    .menu a {
+        text-decoration: none;
+        color: #333;
+        padding: 5px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    .menu a:hover {
+        background-color: #ddd;
+    }
+    .menu a.logout:hover {
+        background-color: red; /* Changed logout hover background color */
+    }
+    .content {
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 20px;
+        background-color: #fff; /* Changed content background color */
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 20px; /* Increased margin bottom for h1 */
+        color: #333; /* Changed h1 text color */
+    }
+    /* Styling for the dropdown menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #eee;
+    color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dropbtn:hover {
+    background-color: #ddd;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #ddd;
+}
+
+    h2{
+        text-align: center;
+    }
+
+    /* The style for the welcome message element */
+    #welcome {
+        animation: slow-motion 10s infinite; /* Add the animation property */
+    }
+
+    /* The style for the slow motion animation */
+    @keyframes slow-motion {
+        0% {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1.5);
+        }
+        100% {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+    }
+
+    .buttons {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .buttons a {
+        text-decoration: none;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: #007bff;
+        transition: background-color 0.3s ease;
+    }
+    .buttons a:hover {
+        background-color: #0056b3;
+    }
+    .footer {
+        margin-top: 60px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #666;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+        background-color: #f1f1f1;
+        padding: 20px;
+    } 
+    .footer h1 {
+        font-size: 18px
+    }
+    .footer p {
+      line-height: 1.4em;
+      margin: 5px 0;
+    }
+    .fa-solid {
+        margin-right: 5px; /* Add spacing between the icon and text */
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>House Tax Payment System</h1>
+    </div>
+    <div class="menu">
+        <a href="dashboard.html"><i class="fa-solid fa-house"></i> Home</a>
+        <div class="dropdown">
+            <button class="dropbtn">Housing</button>
+            <div class="dropdown-content">
+                <a href="propertylist.html" id="propertyListBtn">Registration</a>
+                <a href="registered_land.php">Status</a>
+                </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Tax Assessment</button>
+            <div class="dropdown-content">
+                <a href="taxassessment.html">Tax</a>
+                </div>
+        </div>
+        <a href="notif.html"><i class="fa-solid fa-bell"></i> Notification</a> 
+        <a href="departmentlogin.html"><i class="fa-solid fa-lock"></i> Department Login</a> 
+        <a href="dashboard.html" class="logout">Logout</a> 
+    </div>
+</div>
+<!-- Content for the dashboard page -->
+<div class="content">
+  <h2 id="welcome">Welcome to the House Tax Payment System</h2>
+  <div class="buttons">
+        <a href="register.php">Register</a>
+        <a href="login.html">Login</a>
+    </div>
+</div>
+<footer class="footer">
+    <div>
+        <h1>Dates to remember:</h1>
+        <p>First half interest : 01-08-2024</p>
+        <p>Second half interest : 30-11-2024</p>
+        <p>Penalty Starts : 29-11-2024</p>
+    </div>
+    <div>
+        <h1>Head Office Details:</h1> 
+        <p><i class="fa-solid fa-phone"></i>  +254 790 098372</p>
+        <p><i class="fa-solid fa-phone"></i> +254 114 503239</p>
+        <p><i class="fa-solid fa-location-dot"></i> Nairobi,Kenya</p>
+    </div>
+    <div>
+        <h1>Business Hours:</h1>
+        <p>Monday - Saturday :10am to 5.30pm</p>
+    </div>
+</footer>
+<script>
+    // JavaScript to redirect to dashboard.html when logout link is clicked
+    document.querySelector('.menu a.logout').addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent default link behavior
+        window.location.href = 'dashboard.html'; // Redirect to dashboard.html
+    });
+</script>
+</body>
+</html>

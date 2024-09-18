@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tax Assessment</title>
+<style>
+    /* Basic styling for the tax assessment page */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: aliceblue;
+    }
+    .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .form-group input[type="text"], .form-group select {
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        width: 100%;
+        margin-top: 5px;
+    }
+    .form-group button {
+        padding: 8px 16px;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+    .form-group button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Tax Assessment</h1>
+    <div class="form-group">
+        <label for="tin">Tax Identification Number:</label>
+        <input type="text" id="tin" placeholder="Enter Tax Identification Number..." required />
+    </div>
+    <div class="form-group">
+        <label for="propertyType">Property Type:</label>
+        <select id="propertyType" name="propertyType">
+            <option value="Residential">Residential</option>
+            <option value="Commercial">Commercial</option>
+            <option value="Industrial">Industrial</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="propertyValue">Property Value:</label>
+        <input type="text" id="propertyValue" placeholder="Enter property value">
+    </div>
+    <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="text" id="age" placeholder="Enter age">
+    </div>
+    <div class="form-group">
+        <label for="disability">Disability (Yes/No):</label>
+        <select id="disability" name="disability">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="medicalFile"> if Yes please Upload Medical Document:</label>
+        <input type="file" id="medicalFile" name="medicalFile" accept="image/*,application/pdf">
+    </div>
+    <div class="form-group">
+        <button onclick="calculateTax()">Display Taxable Amount</button>
+    </div>
+    <div class="form-group" id="taxResult">
+        <!-- Tax assessment result will be displayed here -->
+    </div>
+    <div class="form-group">
+        <!-- Payment options -->
+        <h3>Payment option</h3>
+        <button onclick="payWithPayPal()">  Pay</button>
+    </div>
+</div>
+<script>
+    // Function to calculate tax based on property value, property type, age, disability, tax rate, and exemption
+    function calculateTax() {
+        const tin = document.getElementById('tin').value.trim();
+        const propertyType = document.getElementById('propertyType').value.trim();
+        const propertyValue = parseFloat(document.getElementById('propertyValue').value.trim());
+        const age = parseFloat(document.getElementById('age').value.trim());
+        const disability = document.getElementById('disability').value.trim();
+
+        let exemption = 0;
+        let taxRate = 0;
+
+        // Determine exemption and tax rate based on property type, age, and disability
+        switch(propertyType) {
+            case 'Residential':
+                exemption = 5000;
+                taxRate = 5;
+                break;
+            case 'Commercial':
+                exemption = 4000;
+                taxRate = 3;
+                break;
+            case 'Industrial':
+                exemption = 3500;
+                taxRate = 2;
+                break;
+            default:
+                break;
+        }
+
+        // Apply additional exemptions based on age and disability
+        if (age >= 60) { // Senior Citizen Exemption
+            exemption += 7000;
+            taxRate += 30;
+        }
+        if (disability === 'Yes') { // Disability Exemption
+            exemption += 10000;
+            taxRate += 35;
+        }
+
+        const taxableAmount = propertyValue - exemption;
+        const taxAmount = (taxableAmount * (taxRate / 100)).toFixed(2);
+
+        const taxResultElement = document.getElementById('taxResult');
+        taxResultElement.innerHTML = `<p>Taxable Amount: ${taxableAmount}</p><p>Tax Amount: ${taxAmount}</p>`;
+    }
+
+    
+    // Function to redirect to PayPal payment page
+    function payWithPayPal() {
+        window.location.href = 'paypalpayment.html';
+    }
+</script>
+</body>
+</html>

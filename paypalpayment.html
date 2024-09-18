@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PayPal Payment</title>
+<style>
+    /* Basic styling for the PayPal payment page */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: aliceblue;
+    }
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .form-group input[type="text"], .form-group select {
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        width: 100%;
+        margin-top: 5px;
+    }
+    .form-group button {
+        padding: 8px 16px;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+    .form-group button:hover {
+        background-color:#0056b3;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Make Payment Here</h1>
+    <div class="form-group">
+      <label for="tin">Tax Identification Number:</label>
+      <input type="text" id="tin" placeholder="Enter Tax  Identification Number..." required />
+  </div>
+    <div class="form-group">
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" placeholder="Enter payment amount" required />
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <input type="text" id="description" placeholder="Enter payment description" />
+    </div>
+    <div class="form-group">
+        <button onclick="processPayment()">Make Pay </button>
+    </div>
+</div>
+<script>
+    // Function to process PayPal payment
+    function processPayment() {
+      const tin = document.getElementById('tin').value.trim();
+        const amount = document.getElementById('amount').value.trim();
+        const description = document.getElementById('description').value.trim();
+
+        // Replace <YOUR_PAYPAL_EMAIL> with your actual PayPal email
+        const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=<YOUR_PAYPAL_EMAIL>&currency_code=USD&amount=${amount}&item_name=${description}&no_shipping=1&return=http://example.com/success.html&cancel_return=http://example.com/cancel.html`;
+
+        window.location.href = paypalUrl;
+    }
+</script>
+</body>
+</html>
